@@ -2,10 +2,13 @@
 
 import { ArrowRight, Lock } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
 import { SiteFooter, SiteHeader } from '@/components/site-header';
 
-export default function AdminLoginPage() {
+function LoginForm() {
+  const params = useSearchParams();
+  const from = params.get('from') || '/upload';
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,7 +24,7 @@ export default function AdminLoginPage() {
     });
     setPending(false);
     if (res.ok) {
-      window.location.href = '/upload';
+      window.location.href = from.startsWith('/') ? from : '/upload';
     } else {
       setError('密碼錯誤');
     }
@@ -73,5 +76,13 @@ export default function AdminLoginPage() {
 
       <SiteFooter />
     </main>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-background" />}>
+      <LoginForm />
+    </Suspense>
   );
 }

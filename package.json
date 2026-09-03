@@ -2,7 +2,9 @@
   "name": "void-store-v2",
   "version": "0.1.0",
   "private": true,
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -20,6 +22,7 @@
     "lucide-react": "^0.454.0",
     "next": "^15.1.0",
     "next-sanity": "^9.8.20",
+    "pinyin-pro": "^3.29.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.62.3",

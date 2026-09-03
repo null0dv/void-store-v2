@@ -1,4 +1,4 @@
-import { createImageUrlBuilder } from '@sanity/image-url';
+import imageUrlBuilder from '@sanity/image-url';
 import { createClient } from 'next-sanity';
 import type { Product, Series, StockType } from './products';
 
@@ -12,7 +12,7 @@ export const sanityClient = createClient({
   useCdn: true,
 });
 
-const builder = createImageUrlBuilder(sanityClient);
+const builder = imageUrlBuilder(sanityClient);
 
 export function sanityImageUrl(source: unknown, width = 1200) {
   if (!source) return null;
